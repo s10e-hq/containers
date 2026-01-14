@@ -28,9 +28,9 @@ jobs:
       id: dispatch
       with:
         token: ${{ steps.app-token.outputs.token }}
-        owner: ${{ github.repository_owner }}
-        repo: containers
         ref: master
+        repo: ${{ github.event.repository.name }}
+        owner: ${{ github.repository_owner }}
         workflow: renovate.yaml
         workflow_inputs: |-
           { "autodiscoverFilter": "${{ github.event.repository.name }}" }
