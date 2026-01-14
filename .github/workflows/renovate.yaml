@@ -7,7 +7,7 @@ on:
     branches:
     - master
     paths:
-    - renovate.json5
+    - .renovaterc.json5
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
         token: ${{ steps.app-token.outputs.token }}
         owner: ${{ github.repository_owner }}
         repo: .github
-        ref: main
+        ref: master
         workflow: renovate.yaml
         workflow_inputs: |-
           { "autodiscoverFilter": "${{ github.event.repository.name }}" }
