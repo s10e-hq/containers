@@ -5,6 +5,7 @@
 "aqua:jqlang/jq" = "1.8.1"
 "aqua:mikefarah/yq" = "4.50.1"
 "go" = "1.25.5"
+"yamlfmt" = "0.21.0"
 
 [hooks]
 postinstall = [
