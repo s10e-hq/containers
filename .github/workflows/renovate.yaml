@@ -24,13 +24,13 @@ jobs:
         owner: ${{ github.repository_owner }}
 
     - name: Run Renovate
-      uses: codex-/return-dispatch@2277c7e64ca38a7350b95cfec2d6715ccebb7108 # v3.0.1
+      uses: Codex-/return-dispatch@2277c7e64ca38a7350b95cfec2d6715ccebb7108 # v3.0.1
       id: dispatch
       with:
         token: ${{ steps.app-token.outputs.token }}
-        ref: master
-        repo: ${{ github.event.repository.name }}
         owner: ${{ github.repository_owner }}
+        repo: .github
+        ref: main
         workflow: renovate.yaml
         workflow_inputs: |-
           { "autodiscoverFilter": "${{ github.event.repository.name }}" }
