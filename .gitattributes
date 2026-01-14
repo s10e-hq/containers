@@ -4,3 +4,4 @@
 *.justfile linguist-detectable linguist-language=JUST
 *.go linguist-detectable linguist-language=GO
 *.hcl linguist-detectable linguist-language=HCL
+*.toml linguist-detectable linguist-language=TOML

@@ -6,6 +6,7 @@
       "blueglassblock.better-json5",
       "skellock.just",
       "golang.go",
-      "hashicorp.hcl"
+      "hashicorp.hcl",
+      "tamasfe.even-better-toml"
     ]
 }
