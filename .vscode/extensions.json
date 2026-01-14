@@ -1,6 +1,8 @@
 {
     "recommendations": [
-        "editorconfig.editorconfig",
-        "blueglassblock.better-json5"
+      "github.vscode-pull-request-github",
+      "github.vscode-github-actions",
+      "editorconfig.editorconfig",
+      "blueglassblock.better-json5"
     ]
 }
