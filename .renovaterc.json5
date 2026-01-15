@@ -69,20 +69,20 @@
       matchDatasources: ["docker"],
       matchFileNames: ["**/Dockerfile"],
       matchPackageNames: ["/alpine/"],
-      allowedVersions: "/3\\.22/",
+      allowedVersions: "/3\\.23/",
     },
     {
       description: ["Allowed Alpine Version for Postgres Base Images"],
       matchDatasources: ["docker"],
       matchPackageNames: ["/postgres/"],
-      allowedVersions: "/alpine3\\.22/",
+      allowedVersions: "/alpine3\\.23/",
     },
     {
       description: ["Allowed Python Version for Base Images"],
       matchDatasources: ["docker"],
       matchFileNames: ["**/Dockerfile"],
       matchPackageNames: ["/python/"],
-      allowedVersions: "/3\\.13-alpine3\\.22/",
+      allowedVersions: "/3\\.13-alpine3\\.23/",
     }
   ]
 }
