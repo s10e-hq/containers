@@ -1,23 +1,22 @@
----
 area/apps:
-  - changed-files:
-      - any-glob-to-any-file:
-          - apps/**/*
-          - include/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - apps/**/*
+    - include/**/*
 area/github:
-  - changed-files:
-      - any-glob-to-any-file:
-          - .github/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - .github/**/*
 area/mise:
-  - changed-files:
-      - any-glob-to-any-file:
-          - .mise.toml
+- changed-files:
+  - any-glob-to-any-file:
+    - .mise.toml
 area/renovate:
-  - changed-files:
-      - any-glob-to-any-file:
-          - .renovate/**/*
-          - .renovaterc.json5
+- changed-files:
+  - any-glob-to-any-file:
+    - .renovate/**/*
+    - .renovaterc.json5
 app/busybox:
-  - changed-files:
-      - any-glob-to-any-file:
-          - apps/busybox/**
+- changed-files:
+  - any-glob-to-any-file:
+    - apps/busybox/**

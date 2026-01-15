@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://json.schemastore.org/github-action.json
 name: App Tests
 description: Takes an app, app image and token then runs app tests

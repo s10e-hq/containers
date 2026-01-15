@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://json.schemastore.org/github-action.json
 name: Release Tag
 description: Return the next release tag based on the current date and the latest release tag

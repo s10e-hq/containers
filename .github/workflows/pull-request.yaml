@@ -10,18 +10,18 @@ jobs:
     outputs:
       changed-files: ${{ steps.changed-files.outputs.changed_files }}
     steps:
-      - name: Get changed files
-        uses: bjw-s-labs/action-changed-files@1a5aeab1bfa64d0c4e786f501d5a3f1fad4a24da # v0.4.1
-        id: changed-files
-        with:
-          path: apps
-          include_only_directories: true
-          max_depth: 1
+    - name: Get changed files
+      uses: bjw-s-labs/action-changed-files@1a5aeab1bfa64d0c4e786f501d5a3f1fad4a24da # v0.4.1
+      id: changed-files
+      with:
+        path: apps
+        include_only_directories: true
+        max_depth: 1
   build:
     if: ${{ needs.prepare.outputs.changed-files != '[]' }}
     name: Build ${{ matrix.app }}
     needs:
-      - prepare
+    - prepare
     uses: ./.github/workflows/app-builder.yaml
     permissions:
       attestations: write
@@ -41,14 +41,14 @@ jobs:
     if: ${{ !cancelled() }}
     name: Build Success
     needs:
-      - build
+    - build
     runs-on: ubuntu-latest
     steps:
-      - name: Any jobs failed?
-        if: ${{ contains(needs.*.result, 'failure') }}
-        run: |-
-          exit 1
-      - name: All jobs passed or skipped?
-        if: ${{ !(contains(needs.*.result, 'failure')) }}
-        run: |-
-          echo "All jobs passed or skipped" && echo "${{ toJSON(needs.*.result) }}"
+    - name: Any jobs failed?
+      if: ${{ contains(needs.*.result, 'failure') }}
+      run: |-
+        exit 1
+    - name: All jobs passed or skipped?
+      if: ${{ !(contains(needs.*.result, 'failure')) }}
+      run: |-
+        echo "All jobs passed or skipped" && echo "${{ toJSON(needs.*.result) }}"
