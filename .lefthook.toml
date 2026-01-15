@@ -19,3 +19,15 @@ stage_fixed = true
 run = "yamlfmt {staged_files}"
 glob = ["*.yaml"]
 stage_fixed = true
+
+
+[pre-commit.commands.entrypoint-executable]
+run = """
+for file in {staged_files}; do
+  if [ ! -x "$file" ]; then
+    chmod +x "$file"
+  fi
+done
+"""
+glob = ["apps/**/entrypoint.sh"]
+stage_fixed = true
