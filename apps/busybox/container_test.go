@@ -9,6 +9,6 @@ import (
 
 func Test(t *testing.T) {
 	ctx := context.Background()
-	image := testhelpers.GetTestImage("ghcr.io/home-operations/busybox:rolling")
+	image := testhelpers.GetTestImage("ghcr.io/s10e-hq/busybox:rolling")
 	testhelpers.TestCommandSucceeds(t, ctx, image, nil, "/bin/busybox", "--list")
 }
