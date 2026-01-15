@@ -23,7 +23,7 @@ RUN \
         tzdata \
     && mkdir -p /app/bin \
     && curl -fsSL -o /tmp/app.tgz "https://github.com/sirrobot01/decypharr/releases/download/${VERSION}/decypharr_Linux_${TARGETARCH/amd64/x86_64}.tar.gz" \
-    && tar xzf /tmp/app.tgz -C /app/bin --strip-components=1 \
+    && tar xzf /tmp/app.tgz -C /app/bin \
     && chown -R root:root /app && chmod -R 755 /app
 
 COPY . /
