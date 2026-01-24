@@ -38,7 +38,7 @@ RUN \
         libpq \
         libxslt \
         mediainfo \
-        nano \
+        vim \
         trurl \
         tzdata \
         unzip \

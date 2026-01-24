@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
- exec \
-     /app/bin/decypharr \
-         --config=/config
+exec \
+  /app/bin/decypharr \
+    --config=/config

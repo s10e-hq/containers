@@ -23,7 +23,7 @@ RUN \
         icu-libs \
         jq \
         libintl \
-        nano \
+        vim \
         sqlite-libs \
         tzdata \
     && mkdir -p /app/bin \
