@@ -39,7 +39,7 @@ jobs:
       with:
         upstream-version: ${{ steps.app-options.outputs.version }}
     - name: Build App Metadata
-      uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf # v6.0.0
+      uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
       id: meta
       env:
         DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
@@ -87,7 +87,7 @@ jobs:
       with:
         app: ${{ inputs.app }}
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+      uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -98,12 +98,12 @@ jobs:
         name: ${{ inputs.app }}-bake-metadata
         path: ${{ runner.temp }}
     - name: Setup Docker Buildx
-      uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
+      uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
     - name: Add Include Directory to Build Context
       run: |-
         rsync -a --ignore-existing --progress ./include/ ./apps/${{ inputs.app }}/
     - name: Build App
-      uses: docker/bake-action@82490499d2e5613fcead7e128237ef0b0ea210f7 # v7.0.0
+      uses: docker/bake-action@5be5f02ff8819ecd3092ea6b2e6261c31774f2b4 # v6.10.0
       id: bake
       with:
         files: |
@@ -160,7 +160,7 @@ jobs:
         pattern: ${{ inputs.app }}-digests-*
         merge-multiple: true
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+      uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
@@ -187,7 +187,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
+      uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
