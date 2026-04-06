@@ -1,11 +1,14 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Retry Release
+
 on:
   schedule:
   - cron: 30 1 * * *
   workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   apps:
     name: Get App Inventory
@@ -17,9 +20,11 @@ jobs:
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
         persist-credentials: false
+
     - name: Get App Inventory
       uses: ./.github/actions/app-inventory
       id: inventory
+
   retry:
     if: ${{ needs.apps.outputs.apps != '[]' }}
     name: Retry Release
@@ -36,21 +41,26 @@ jobs:
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
         persist-credentials: false
+
     - name: Generate Token
-      uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+      uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
       id: app-token
       with:
         app-id: ${{ secrets.BOT_APP_ID }}
         private-key: ${{ secrets.BOT_APP_PRIVATE_KEY }}
+
     - name: Install Cosign
       uses: sigstore/cosign-installer@cad07c2e89fa2edd6e2d7bab4c1aa38e53f76003 # v4.1.1
+
     - name: Install regctl
       uses: regclient/actions/regctl-installer@f07124ffba4b0cbf96b2a666d481ed9d44b5e7e4 # main
+
     - name: Get Bake Options
       uses: ./.github/actions/app-options
       id: app-options
       with:
         app: ${{ matrix.app }}
+
     - name: Get App Registry Version
       id: registry
       env:
@@ -63,6 +73,7 @@ jobs:
             exit 1
         fi
         echo "version=${version}" >> $GITHUB_OUTPUT
+
     - if: ${{ steps.app-options.outputs.version != steps.registry.outputs.version }}
       name: Find Pull Request
       uses: juliangruber/find-pull-request-action@33d46d4ff90884bb23aaead16044125daaf733d8 # v1.11.0
@@ -71,6 +82,7 @@ jobs:
         github-token: ${{ steps.app-token.outputs.token }}
         labels: app/${{ matrix.app }}
         state: open
+
     - if: ${{ steps.find-pull-request.outputs.number != '' }}
       name: Retry Release
       env:

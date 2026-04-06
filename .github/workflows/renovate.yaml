@@ -7,6 +7,7 @@ on:
     - master
     paths:
     - .renovaterc.json5
+    - .renovate/**.json5
   workflow_dispatch:
 
 jobs:
@@ -15,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Generate Token
-      uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+      uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
       id: app-token
       with:
         app-id: ${{ secrets.BOT_APP_ID }}
@@ -23,7 +24,7 @@ jobs:
         owner: ${{ github.repository_owner }}
 
     - name: Run Renovate
-      uses: Codex-/return-dispatch@16fa9d14771c4d56ae0196bbda1d3c17f7f3650f # v3.0.2
+      uses: codex-/return-dispatch@16fa9d14771c4d56ae0196bbda1d3c17f7f3650f # v3.0.2
       id: dispatch
       with:
         token: ${{ steps.app-token.outputs.token }}

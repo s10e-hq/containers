@@ -1,8 +1,10 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Pull Request
+
 on:
   merge_group:
   pull_request:
+
 jobs:
   prepare:
     name: Prepare
@@ -17,6 +19,7 @@ jobs:
         path: apps
         include_only_directories: true
         max_depth: 1
+
   build:
     if: ${{ needs.prepare.outputs.changed-files != '[]' }}
     name: Build ${{ matrix.app }}
@@ -37,6 +40,7 @@ jobs:
     with:
       app: ${{ matrix.app }}
       release: false
+
   status:
     if: ${{ !cancelled() }}
     name: Build Success
@@ -48,6 +52,7 @@ jobs:
       if: ${{ contains(needs.*.result, 'failure') }}
       run: |-
         exit 1
+
     - name: All jobs passed or skipped?
       if: ${{ !(contains(needs.*.result, 'failure')) }}
       run: |-

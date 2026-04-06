@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Release
+
 on:
   push:
     branches:
@@ -17,6 +18,7 @@ on:
         description: Release
         required: false
         default: false
+
 jobs:
   prepare:
     name: Prepare
@@ -31,6 +33,7 @@ jobs:
         path: apps
         include_only_directories: true
         max_depth: 1
+
   changed:
     if: ${{ needs.prepare.outputs.changed-files != '[]' || github.event_name == 'workflow_dispatch' }}
     name: Get Changed Apps
@@ -52,6 +55,7 @@ jobs:
           core.setOutput('apps', JSON.stringify(appsToBuild));
           console.log('apps:', JSON.stringify(appsToBuild, null, 2));
           core.summary.addHeading('Apps to build:').addList(appsToBuild).write();
+
   build:
     if: ${{ needs.changed.outputs.apps != '[]' }}
     name: Build ${{ matrix.app }}
@@ -73,6 +77,7 @@ jobs:
     with:
       app: ${{ matrix.app }}
       release: ${{ github.event_name == 'workflow_dispatch' && inputs.release || github.event_name == 'push' }}
+
   status:
     if: ${{ !cancelled() }}
     name: Build Success
@@ -84,6 +89,7 @@ jobs:
       if: ${{ contains(needs.*.result, 'failure') }}
       run: |-
         exit 1
+
     - name: All jobs passed or skipped?
       if: ${{ !(contains(needs.*.result, 'failure')) }}
       run: |-
